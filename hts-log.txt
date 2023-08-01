@@ -1,0 +1,5 @@
+<!--COM2-HTTrack-->
+12:07:18	Error: 	"Not Found" (404) at link https://boblox.onrender.com/Things/Studio/Things/Mainassets/GameIMG/ArrowCursor.png (from https://boblox.onrender.com/Things/Studio/Studio.html)
+12:07:18	Error: 	"Not Found" (404) at link https://boblox.onrender.com/Things/Studio/script.js (from https://boblox.onrender.com/Things/Studio/Studio.html)
+12:07:18	Error: 	"Not Found" (404) at link https://boblox.onrender.com/Things/Studio/UC.js (from https://boblox.onrender.com/Things/Studio/Studio.html)
+<!--LoggedbyCOM2-->

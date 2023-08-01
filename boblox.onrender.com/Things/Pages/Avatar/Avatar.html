@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from boblox.onrender.com/Things/Pages/Avatar/Avatar.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:16 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>BOBLOX</title>
+    <link rel="icon" type="image/x-icon" href="../../Mainassets/BrowserLogo.png">
+    <style>
+
+      ::-webkit-scrollbar {
+        background-color: #4660bd;
+        width: 5px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: white;
+      }
+      body {
+        background-color: #dedede;
+        font-family: sans-serif;
+        margin: 0;
+        color: black;
+        display: ;
+      }
+      #Topbar {
+        background-color: #4660bd;
+        user-select: none;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        z-index: 10000000000;
+      }
+      #Topbar .Logo {
+        padding: 2px 2px;
+        user-select: none;
+        margin-left: 5px;
+      }
+      .TopbarM {
+        background-color: rgba(0, 0, 0, 0);
+        border: 0;
+        outline: 0;
+        padding: 6px 6px;
+        cursor: pointer;
+        user-select: none;
+        margin-left: 5px;
+      }
+      .AE {
+        font-size: 30px;
+        margin-left: 20px;
+      }
+      .A {
+        font-size: 20px;
+      }
+      #AvatarEditorHolder {
+        margin-left: 15px;
+        display: inline-block;
+      }
+      #ThreeCanvas {
+        width: 313px;
+        background-color: white;
+        display: inline-block;
+        float: left;
+        box-shadow: 0px 0px 5px #a3a3a3;
+      }
+
+      #ThreeCanvas p {
+        margin-left: 15px;
+      }
+      #Customizer {
+        display: inline-block;
+        float: left;
+        margin-left: 10px;
+      }
+      #tabs {
+        z-index: 1000000;
+        display: inline-block;
+      }
+      .TabA {
+        display:inline-block;
+        box-shadow: 0px 0px 5px #a3a3a3;
+        font-size: 18px;
+        padding: 15px 30px;
+        border-bottom: 5px solid white;
+        background-color: white;
+      }
+      #TabAContent {
+        display: none;
+        background-color: white;
+        text-align: center;
+        z-index: 999;
+        box-shadow: 0px 0px 5px #a3a3a3;
+      }
+      #TabAContent a {
+        background-color: white;
+        color: black;
+        padding: 10px 15px;
+        text-decoration: none;
+        display:inline-block;
+        z-index: 999;
+      }
+      #Tab:hover .TabA {
+        border-bottom: 5px solid #4681bd;
+      }
+      #Tab:hover #TabAContent {display: block;}
+      
+      #FaceItems {
+        position: absolute;
+        top: 200px;
+        left: 328px;
+        z-index: 1;
+      }
+      #BodyItems {
+        position: absolute;
+        top: 200px;
+        left: 328px;
+        z-index: 1;
+      }
+      #Item {
+        background-color: white;
+        border-radius: 3px;
+        margin-top: 10px;
+        margin-left: 10px;
+        font-size: 15px;
+        text-align: center;
+        text-decoration: none;
+        z-index: 1;
+        display: inline-block;
+        border: 3px solid white;
+      }
+      #Item img {
+        background-color: white;
+        font-size: 10px;
+        text-align: center;
+        display: block;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom: 1.5px solid #dedede;
+        z-index: 1;
+      }
+      #Item p {
+        color: black;
+        padding-bottom: 5px;
+        text-decoration: none;
+        z-index: 1;
+      }
+      #Item:hover {
+        cursor: pointer;
+      }
+      #SelectedItem {
+        background-color: white;
+        border-radius: 3px;
+        margin-top: 10px;
+        margin-left: 10px;
+        font-size: 15px;
+        text-align: center;
+        text-decoration: none;
+        z-index: 1;
+        display: inline-block;
+        border: 3px solid #3bb856;
+      }
+      #SelectedItem img {
+        background-color: white;
+        font-size: 10px;
+        text-align: center;
+        display: block;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+        border-bottom: 1.5px solid #dedede;
+        z-index: 1;
+      }
+      #SelectedItem p {
+        color: black;
+        padding-bottom: 5px;
+        text-decoration: none;
+        z-index: 5;
+      }
+      #SelectedItem:hover {
+        cursor: pointer;
+      }
+      #ItemLink {
+        text-decoration: none;
+      }
+      #SelectedItem #WT {
+      width: 0; 
+      height: 0;
+      position: absolute;
+      border-top: 50px solid #3bb856;
+      border-bottom: 50px solid transparent;
+      border-right: 50px solid transparent;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <div id="Topbar">
+      <button class="TopbarM"><img src="../../Mainassets/GameIMG/Menu.png" height="20px" width="25px" draggable="false"></button>
+      <a class="Logo" href="../TEAP/index.html">
+        <img src="../../Mainassets/BrowserLogo.png" height="23px" width="25px" draggable="false">
+      </a>
+    </div>
+    <p class="AE">Avatar Editor</p>
+
+    
+    <div id="AvatarEditorHolder">
+      <div id="ThreeCanvas">
+        <iframe src="Avatarframe.html" style="border: 0;" height="410px" width="313"></iframe>
+      </div>
+      <div id="Customizer">
+        <div id="tabs">
+          <div id="Tab">
+            <a class="TabA">Body</a>
+            <div id="TabAContent">
+              <a href="javascript:AvatarTab('FaceItems')">Faces</a>
+              <a href="javascript:AvatarTab('BodyItems')">Body Parts</a>
+           </div>
+          </div>
+        </div>
+        <div id="FaceItems">
+          
+        </div>
+        <div id="BodyItems">
+          
+        </div>
+      </div>
+    </div>
+    <script src="../../../UC.js"></script>
+    <script>
+      function FaceChange(To) {
+        localStorage.setItem("Face",To)
+      }
+      function addAvatarItem(Item, Name, ImgSRC, divID, lsi) {
+        const Code = document.createElement("a")
+        Code.id = "ItemLink"
+        Code.href = 'javascript:localStorage.setItem("' + lsi + '", "' + Item + '"); location.reload()'
+        document.getElementById(divID).appendChild(Code);
+        const box = document.createElement("div");
+        box.onclick = 'alert("Bruh")'
+        box.style.cursor = "pointer"
+        box.innerHTML = "<div id='WT'></div><img src='" + ImgSRC + "' width='100px' height='105px' > <p>" + Name + "</p>"
+        box.id = "Item";
+        if(localStorage.getItem(lsi) == Item) {
+          box.id = "SelectedItem"
+          Code.href = 'javascript:localStorage.setItem("' + lsi + '", "Default"); location.reload()'
+        }
+        Code.appendChild(box);
+      }
+      addAvatarItem("ManFace","Man Face",'../../Avatar/Faces/ManFace.png', "FaceItems", "Face")
+      addAvatarItem("Chill","Chill Face",'../../Avatar/Faces/Chill.png', "FaceItems", "Face")
+      addAvatarItem("Man","Man Left Arm",'../../Avatar/BodyParts/Man/leftArm.obj', "BodyItems", 'leftArm')
+      addAvatarItem("Man","Man Right Arm",'../../Avatar/BodyParts/Man/rightArm.obj', "BodyItems", 'rightArm')
+      addAvatarItem("Man","Man Torso",'../../Avatar/BodyParts/Man/Torso.obj', "BodyItems", 'Torso')
+      addAvatarItem("Man","Man Right Leg",'../../Avatar/BodyParts/Man/rightLeg.obj', "BodyItems", 'rightLeg')
+      addAvatarItem("Man","Man Left Leg",'../../Avatar/BodyParts/Man/rightLeg.obj', "BodyItems", 'leftLeg')
+      function AvatarTab(TabID) {
+        document.getElementById("FaceItems").style.display = "none"
+        document.getElementById("BodyItems").style.display = "none"
+        document.getElementById(TabID).style.display = "block"
+      }
+      AvatarTab("FaceItems")
+    </script>
+  </body>
+
+<!-- Mirrored from boblox.onrender.com/Things/Pages/Avatar/Avatar.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:18 GMT -->
+</html>

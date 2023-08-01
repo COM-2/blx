@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html>
+	
+<!-- Mirrored from boblox.onrender.com/Game.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:10 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<title>BOBLOX</title>
+    <link rel="icon" type="image/x-icon" href="Things/Mainassets/BrowserLogo.png">
+    <script src="../cdn.jsdelivr.net/gh/kripken/ammo.js%40HEAD/builds/ammo.wasm.js"></script>
+		<style>
+      html {
+        cursor:url(Things/Mainassets/GameIMG/ArrowCursor.png) , pointer!important
+      }
+			body {
+        margin: 0;
+        overflow: hidden;
+        user-select: none;
+        color: white;
+        font-family: sans-serif;
+      }
+      #LD-BG {
+        position: absolute;
+        background-image: url(imgs/BG.png);
+        height: 100vh;
+        width: 100vw;
+        z-index: 999999;
+      }
+      
+      #TitleBox {
+        position: absolute;
+        left: 10px;
+        bottom: 10px;
+      }
+      
+      #Title {
+        font-size: 45px;
+      }
+      
+      #ByTitle {
+        font-size: 20px;
+      }
+      
+      p {
+        margin: 0;
+      }
+      
+      #LoadBox {
+        position: absolute;
+        right: 15px;
+        bottom: 5px;
+      }
+      
+      #LTXT {
+        position: absolute;
+        right: 15px;
+        bottom: 45px;
+      }
+      #Game {
+        border: 0;
+      }
+      #Topbar {
+        background:rgba(20,20,20,0.5);
+        height: 30px;
+        width: 100vw;
+        position: fixed;
+        transition: 0.4s;
+      }
+      
+      #Topbar:hover {
+        
+      }
+      #Topbar button {
+        background:rgba(0,0,0,0);
+        border: 0;
+        outline: 0;
+        cursor:url(Things/Mainassets/GameIMG/ArrowCursor.png) , pointer!important
+      }
+      #menuBTN  {
+        margin-top: 3.5px;
+        user-select: none;
+        outline: 0;
+      }
+      h5 {
+        line-height: 10px;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+      }
+      #Leaderboard {
+        position: fixed;
+        float: right;
+        right: 0; 
+        top: 30px;
+        width: 160px;
+      }
+      #Leaderboard p {
+        font-size: 12px;
+        background-color: rgba(20,20,20,0.5);
+        padding: 2px 5px;
+        margin-top: 3px;
+        margin-bottom: 0;
+      }
+      #Menu {
+        background:rgba(20,20,20,0.5);
+        visibility: hidden;
+        height: 100vh;
+        width: 100vw;
+        position: fixed;
+        top: -100vh;
+        transition: 0.4s;
+        text-align: center;
+      }
+      #Menu button {
+        background-color: #4f5460;
+        border: 0;
+        border-radius: 5px;
+        outline: 0;
+        width: 180px;
+        height: 40px;
+        color: white;
+        font-size: 15px;
+        box-shadow: 0 0 5px black;
+      }
+      #Menu button:hover {
+        background-color: #338bbb;
+      }
+      #chat {
+        position: absolute;
+        top: 33px;
+        left: 3px;
+        background:rgba(20,20,20,0.5);
+        width: 300px;
+        height: 150px;
+        margin: 0;
+        visibility: hidden;
+        overflow-x: hidden;
+      }
+      #ChatInput {
+        position: absolute;
+        top: 185px;
+        left: 3px;
+        background:rgba(20,20,20,0.5);
+        width: 300px;
+        height: 35px;
+        visibility: hidden;
+      }
+      #ChatInput input {
+        position: absolute;
+        color: black;
+        background:rgba(255,255,255,0.5);
+        top: 4px;
+        left: 5px;
+        width: 285px;
+        height: 25px;
+        outline: 0;
+        border: 0;
+        border-radius: 0;
+        color: black;
+      }
+      #chat p {
+        margin: 0;
+        margin-left: 3px;
+        font-size: 15px;
+        font-family: sans-serif;
+      }
+      ::-webkit-scrollbar {
+        width: 5px;
+      }
+      ::-webkit-scrollbar-track {
+        visibility: hidden;
+      }
+      ::-webkit-scrollbar-thumb {
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 5px;
+        border-radius: 6px;
+      }
+
+		</style>
+	</head>
+	<body>
+    <div id="LD-BG">
+      <div id="TitleBox">
+        <p id="Title">Demo</p><p id="ByTitle">By BOBLOX</p>
+      </div>
+      <div id="LoadBox">
+        <img id="Loader" draggable="false" src="imgs/LoadingC.png" width="100px" height="100px">
+        <p id="LTXT">Loading..</p>
+      </div>
+    </div>
+    <div id="Topbar">
+      <button style="z-index: 999;" id="menuBTN" onclick="Menu()"><img id="menubtm" style=" margin-bottom: 10px; vertical-align: bottom;" height="15" width="20" src="Things/Mainassets/GameIMG/Menu.png" draggable="false"></button>
+      <button onclick="Chat()"><img id="chatbtm" style="margin-bottom: 4px;vertical-align: bottom;" height="23" width="23" src="Things/Mainassets/GameIMG/chat.png" draggable="false"></button>
+      <button onclick="BackPack()"><img id="chatbtm" style="margin-bottom: 6px;vertical-align: bottom;" height="22" width="19" src="Things/Mainassets/GameIMG/PackPack.png" draggable="false"></button>
+      <div style=" position:absolute; right:5px; top:10px;margin-top: 13px; float: right;display: inline-block; background-color: #b5b3b3; height: 3px; width: 150px;"  id="UnderBar"></div>
+      <div style=" position:absolute; right:5px; top:10px;margin-top: 13px; float: right;display: inline-block; background-color: #1bfc6b; height: 3px; width: 150px;"  id="HealthBar"></div>
+      <h5 id="userDis" style="vertical-align: bottom; margin-top: 8px; margin-right: 148px; float: right; font-size: 10px; ">Null</h5>
+    </div>
+
+    <div id="chat">
+    </div>
+    <div id="ChatInput">
+      <input value="" autocomplete="off" id="ChatBox" type="text" placeholder='To chat click here or press "/" key'>
+    </div>
+
+    <div id="Leaderboard"></div>
+
+    <canvas id="Game"></canvas>
+
+    <div id="Menu">
+      <button onclick="Leave()">Reset Character</button>
+      <button onclick="Leave()">Leave Game</button>
+      <button onclick="Menu()">Resume Game</button>
+    </div>
+    <!-- the hAAAEEEEl -->
+    <script src="../threejsfundamentals.org/threejs/resources/threejs/r103/three.min.js"></script>
+    <script src="../cdn.jsdelivr.net/npm/three%400.150.1/build/three.min.js"></script>
+		<script async src="../cdn.jsdelivr.net/npm/es-module-shims%401.3.6/dist/es-module-shims.js"></script>
+		<script type="importmap">
+		{
+			"imports": {
+			"three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js"
+			}
+		}
+		</script>
+		<script src="script.js" type="module"></script>
+    <script src="UC.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="../code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      var done = false
+      var Username = "Test account"
+      var socket = io();
+      
+      document.addEventListener("keydown", function(event) {
+        if (event.key === "Escape") {
+          Menu()
+        }
+      });
+      function Menu() {
+        if(done == false) {
+          document.getElementById("Menu").style.top = "0vh"
+          document.getElementById("Menu").style.visibility = "visible"
+          document.getElementById("menubtm").src = "Things/Mainassets/GameIMG/Menu1.png"
+          done = true
+          console.log("PROQUE")
+        } else {
+          document.getElementById("Menu").style.top = "-100vh"
+          document.getElementById("Menu").style.visibility = "hidden"
+          document.getElementById("menubtm").src = "Things/Mainassets/GameIMG/Menu.png"
+          done = false
+        }
+      }
+      function AddLeaderBoardPlayer(Name) {
+        const newPlayer = document.createElement("p");
+        newPlayer.innerHTML = Name
+        document.getElementById("Leaderboard").appendChild(newPlayer)
+      }
+      var Players = [Username];
+      function updatePlayers() {
+        document.getElementById("Leaderboard").innerHTML = '';
+        for (let i = 0; i < Players.length; i++) {
+          AddLeaderBoardPlayer(Players[i])
+        }
+      }
+      updatePlayers()
+      
+      function Usernameleftering() {
+        const UD = document.getElementById("userDis")
+        let marn = 148;
+        UD.innerHTML = Username
+        for (let i = 0; i < UD.innerHTML.length; i++) {
+          marn -= 4.5
+          UD.style.marginRight = marn + "px";
+        }
+      }
+      Usernameleftering()
+      var CDone = false
+      function Chat(occurence) {
+        if(CDone == false) {
+          document.getElementById("chatbtm").src = "Things/Mainassets/GameIMG/chat1.png"
+          document.getElementById("chat").style.visibility = "visible";
+          document.getElementById('ChatInput').style.visibility = "visible"
+          CDone = true
+        } else if(occurence != "index.html") {
+          document.getElementById("chatbtm").src = "Things/Mainassets/GameIMG/chat.png"
+          document.getElementById("chat").style.visibility = "hidden";
+          document.getElementById('ChatInput').style.visibility = "hidden"
+          CDone = false
+        }
+      }
+      document.addEventListener("keydown", function(event) {
+        if (event.key === "index.html") {
+          Chat("index.html")
+          var input = document.getElementById('ChatBox');
+          input.focus();
+        }
+      });
+
+      function chatMEssha(Message) {
+        console.log("Chatted: " + document.getElementById('ChatBox').value);
+        const ChatMessage = document.createElement("p");
+        ChatMessage.textContent = Message
+        document.getElementById("chat").appendChild(ChatMessage)
+      }
+
+      document.getElementById('ChatInput').addEventListener("keydown", function(event) {
+        if (event.keyCode == 13 && document.getElementById('ChatBox').value != "" ) {
+          socket.emit('Chatted', Username, document.getElementById('ChatBox').value)
+          document.getElementById("chat").scrollTo(0, 9999999999)
+          document.getElementById('ChatBox').value = ""
+        }
+      });
+
+      $(function(){
+        socket.on('FRINGGSM', function(UsernameV, MSGV) {
+          chatMEssha("[" + UsernameV + "]: " + MSGV)
+        })
+      });
+
+      function Leave() {
+        console.log(Username + " Has left")
+        window.location = "Things/Pages/TEAP/index.html"
+      }
+
+      var rtnum = 0
+      
+      function rotate() {
+        rtnum += 1
+        document.getElementById("Loader").style.rotate = rtnum + "deg";
+      }
+      setInterval(rotate)
+    </script>
+	</body>
+
+<!-- Mirrored from boblox.onrender.com/Game.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:15 GMT -->
+</html>

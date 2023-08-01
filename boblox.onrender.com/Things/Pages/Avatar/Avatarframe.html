@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from boblox.onrender.com/Things/Pages/Avatar/Avatarframe.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:18 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <style>
+      body {
+        background-color: white;
+        font-family: sans-serif;
+        margin: 0;
+        color: black;
+        overflow-x: auto;
+      }
+      #AvatarEditorHolder {
+        margin-left: 15px;
+        display: inline-block;
+      }
+      #ThreeCanvas {
+        width: 313px;
+        background-color: white;
+        padding-bottom: 10px;
+        display: inline-block;
+        float: left;
+        box-shadow: 0px 0px 5px #a3a3a3;
+      }
+
+      #ThreeCanvas p {
+        margin-left: 15px;
+      }
+      #Customizer {
+        display: inline-block;
+        float: left;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+  <canvas contextmenu="return false;" id="AvatarDisplay" width="313px" height="313px" ></canvas>
+  <p id="e" style="color: gray; margin-left: 10px;">Avatar isn't loading correctly?</p>
+  <a id="Redo" style="float: right; color: black; margin-right: 15px;" href="#">Redraw</a>
+        <script src="../../../../threejsfundamentals.org/threejs/resources/threejs/r103/three.min.js"></script>
+		<script async src="../../../../cdn.jsdelivr.net/npm/es-module-shims%401.3.6/dist/es-module-shims.js"></script>
+		<script type="importmap">
+		{
+			"imports": {
+			"three": "https://cdn.jsdelivr.net/npm/three/build/three.module.js"
+			}
+		}
+		</script>
+		<script type="module">
+      import * as THREE from 'three';
+      import { OrbitControls } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/controls/OrbitControls.js';
+      
+      import { MTLLoader } from 'https://unpkg.com/three@0.150.0/examples/jsm/loaders/MTLLoader.js';
+      import { FBXLoader } from 'https://unpkg.com/three@0.150.1/examples/jsm/loaders/FBXLoader.js'
+      import { OBJLoader } from 'https://unpkg.com/three@0.150.1/examples/jsm/loaders/OBJLoader.js'
+      import { DecalGeometry } from 'https://unpkg.com/three@0.150.0/examples/jsm/geometries/DecalGeometry.js'
+      import { TextureLoader } from 'three';
+      // variables
+      const Canvas = document.getElementById("AvatarDisplay")
+      
+      var keyEe = {
+        a: false,
+        s: false,
+        d: false,
+        w: false,
+      };
+      
+      const Avatar = {
+        Face: localStorage.getItem("Face"),
+        HeadP: localStorage.getItem("Head"),
+        TorsoP: localStorage.getItem("Torso"),
+        LArmP: localStorage.getItem("leftArm"),
+        RArmP: localStorage.getItem("rightArm"),
+        RLegP: localStorage.getItem("rightLeg"),
+        LLegP: localStorage.getItem("leftLeg"),
+        HeadC: localStorage.getItem("HeadC"),
+        TorsoC: localStorage.getItem("TorsoC"),
+        LArmC: localStorage.getItem("LArmC"),
+        RArmC: localStorage.getItem("RArmC"),
+        LLegC: localStorage.getItem("LLegC"),
+        RLegC: localStorage.getItem("RLegC")
+      }
+      
+      const Character = {
+        LoadedChar: false,
+        Username: "Guest",
+        CharStandY: 1,
+        WalkSpeed: 16,
+        switchMov: false,
+        GravitySpeed: 10,
+        zoomMax: 5,
+        standing: true
+      };
+      
+      
+      // scene
+      const scene = new THREE.Scene();
+      
+      // camera
+      const camera = new THREE.PerspectiveCamera(45, 313 / 313, 0.1, 5000);
+      camera.position.set(-2,3,-7);
+      
+      // renderer
+      const renderer = new THREE.WebGLRenderer({canvas: Canvas, alpha: true});
+      const loader = new THREE.TextureLoader();
+      loader.load('b.png' , function(texture)
+      {
+        scene.background = texture;  
+      });
+      
+      // enabling shadows
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMapSoft = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      
+      // orbit controls
+      const controls = new OrbitControls(camera, renderer.domElement);
+      controls.zoomSpeed = 4
+      controls.autoRotate = true
+      controls.mouseButtons = {
+        LEFT: THREE.MOUSE.ROTATE,
+        MIDDLE: THREE.MOUSE.DOLLY,
+        RIGHT: THREE.MOUSE.PAN
+      }
+      
+      // group
+      
+      const Body = new THREE.Group()
+      const Head = new THREE.Group()
+      
+      let Torso;
+      const objLoader = new OBJLoader()
+      objLoader.load(
+          '../../Avatar/BodyParts/' + Avatar.TorsoP + '/torso.obj',
+          (object) => {
+              Torso = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:Avatar.TorsoC});
+                child.castShadow = true;
+                child.receiveShadow = true;
+      
+              }
+          
+              } );
+            Torso.position.y = 2.5
+            Body.add(Torso)
+          },
+      )
+      
+      const Face = new THREE.TextureLoader().load( '../../Avatar/Faces/' + Avatar.Face + '.png' );
+      
+      let HeadT;
+      objLoader.load(
+          '../../Avatar/BodyParts/Default/head.obj',
+          (object) => {
+              HeadT = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:0xfff200, map: Face, transparent: true,});
+                child.castShadow = true;
+                child.receiveShadow = true;
+                
+      
+              }
+    
+              } );
+            HeadT.position.y = 4
+            Head.add(HeadT)
+          },
+      )
+      
+      let HeadOBJ;
+      objLoader.load(
+          '../../Avatar/BodyParts/Default/head.obj',
+          (object) => {
+              HeadOBJ = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:Avatar.HeadC});
+                child.castShadow = true;
+                child.receiveShadow = true;
+                
+      
+              }
+          
+              } );
+            HeadOBJ.position.y = 4
+            Head.add(HeadOBJ)
+          },
+      )
+      
+      Body.add(Head)
+      
+      
+      
+      let leftArm;
+      objLoader.load(
+          '../../Avatar/BodyParts/' + Avatar.LArmP + '/leftArm.obj',
+          (object) => {
+              leftArm = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:Avatar.LArmC});
+                child.castShadow = true;
+                child.receiveShadow = true;
+      
+              }
+          
+              } );
+            leftArm.position.y = 2.5
+            leftArm.position.x = -1.5
+            Body.add(leftArm)
+          },
+      )
+      
+      let rightArm;
+      objLoader.load(
+          '../../Avatar/BodyParts/' + Avatar.RArmP + '/rightArm.obj',
+          (object) => {
+              rightArm = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:Avatar.RArmC});
+                child.castShadow = true;
+                child.receiveShadow = true;
+      
+              }
+          
+              } );
+            rightArm.position.y = 2.5
+            rightArm.position.x = 1.5
+            Body.add(rightArm)
+          },
+      )
+      
+      let LeftLeg;
+      objLoader.load(
+          '../../Avatar/BodyParts/' + Avatar.LLegP + '/leftLeg.obj',
+          (object) => {
+              LeftLeg = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:Avatar.LLegC});
+                child.castShadow = true;
+                child.receiveShadow = true;
+      
+              }
+          
+              } );
+            LeftLeg.position.y = 0.5
+            LeftLeg.position.x = -0.5
+            Body.add(LeftLeg)
+          },
+      )
+      
+      let RightLeg;
+      objLoader.load(
+          '../../Avatar/BodyParts/' + Avatar.RLegP + '/rightLeg.obj',
+          (object) => {
+              RightLeg = object;
+              object.traverse( function ( child ) {
+          
+              if ( child instanceof THREE.Mesh ) {
+      
+                child.material = new THREE.MeshStandardMaterial({color:Avatar.RLegC});
+                child.castShadow = true;
+                child.receiveShadow = true;
+      
+              }
+              } );
+            RightLeg.position.y = 0.5
+            RightLeg.position.x = 0.5
+            Body.add(RightLeg)
+          },
+      )
+      
+      
+      // light
+      const light = new THREE.AmbientLight( 0x828282 ); // soft white light
+      scene.add( light );
+      
+      let Sun = new THREE.DirectionalLight(0x8be0dd, 1);
+      Sun.position.set(-50, 300, -50);
+      Sun.target.position.set(0, 0, 0);
+      Sun.castShadow = true;
+      Sun.intensity = 1.5;
+      Sun.shadow.mapSize.width = 200
+      Sun.shadow.mapSize.Height = 200
+      scene.add(Sun);
+      
+      
+      // adds
+      
+      scene.add(Body)
+      Body.position.y = -2
+      
+      
+      
+      // Scripts
+      
+      function reportWindowSize() {
+        renderer.setSize(313, 313);
+      }
+      
+      window.onresize = reportWindowSize;
+      
+      var myLink = document.getElementById('Redo');
+
+      myLink.onclick = function(){
+        location.reload()
+      }
+       
+      // rendering function
+      function animate() {	
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+      };
+      
+      animate();
+    </script>
+  </body>
+
+<!-- Mirrored from boblox.onrender.com/Things/Pages/Avatar/Avatarframe.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:18 GMT -->
+</html>

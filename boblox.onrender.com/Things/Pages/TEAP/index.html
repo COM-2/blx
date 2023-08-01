@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  
+<!-- Mirrored from boblox.onrender.com/Things/Pages/TEAP/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:09 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+    <title>BOBLOX</title>
+    <link rel="icon" type="image/x-icon" href="../../Mainassets/BrowserLogo.png">
+    <style>
+      body {
+        background: #252525;
+        color: white;
+        font-family: sans-serif;
+        text-align: center;
+      }
+      .EA {
+        font-weight: bold;
+        font-size: 25px;
+      }
+      button {
+        background-color: #31ad45;
+        border: 0;
+        height: 45px;
+        width: 200px;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+        box-shadow: 0 0 5px black;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../../Mainassets/Boblox.png" height="100" width="400">
+    <p class="EA">Early Alpha</p>
+    <button onclick="Avatar()">Customize Avatar</button>
+    <button onclick="Studio()">Studio ( WIP )</button>
+    <button onclick="Play()">Start Demo</button>
+  <script src="../../../UC.js"></script>
+  <script>
+    function Play() {
+      console.log("Playing")
+      window.location = "../../../Game.html"
+    }
+    function Studio() {
+      console.log("Studio ing")
+      window.location = "../../Studio/Studio.html"
+    }
+    function Avatar() {
+      console.log("WentToAvatar")
+      window.location = "../Avatar/Avatar.html"
+    }
+        if(localStorage.getItem("Face")) {
+      console.log("got")
+    } else {
+      localStorage.setItem("Face","Default")
+      console.log("NewFaceValue")
+    }
+  </script>
+  </body>
+
+<!-- Mirrored from boblox.onrender.com/Things/Pages/TEAP/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:09 GMT -->
+</html>

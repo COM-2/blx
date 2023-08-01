@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	
+<!-- Mirrored from boblox.onrender.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:06 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<title>BOBLOX</title>
+    <link rel="icon" type="image/x-icon" href="Things/Mainassets/BrowserLogo.png">
+    <style>
+      body {
+        margin: 0;
+        overflow: hidden;
+      }
+      iframe {
+        width: 100vw;
+        height: 100vh;
+        border: 0;
+      }
+    </style>
+	</head>
+	<body onload="MainPage()">
+    <script src="UC.js"></script>
+	<script src="../cdnjs.cloudflare.com/ajax/libs/socket.io/4.6.1/socket.io.js"></script>
+  <script>
+    function inIframe () {
+      try {
+        return window.self !== window.top;
+      } catch (e) {
+        document.remove();
+        return true;
+      }
+    }
+
+    console.log(inIframe())
+
+    function MainPage() {
+      window.location = "Things/Pages/TEAP/index.html"
+    }
+  </script>
+</body>
+
+<!-- Mirrored from boblox.onrender.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 01 Aug 2023 17:07:09 GMT -->
+</html>
